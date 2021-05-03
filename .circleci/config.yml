@@ -12,9 +12,11 @@ jobs:
           name: Git list
           command: git branch -a -v
       - run:
-          name: Git push
-          command: git push origin/staging
-        
+          name: Git checkout staging
+          command: git checkout origin/staging
+      - run:
+          name: Git merge
+          command: git merge origin/main
 workflows:
   welcome:
     jobs:
