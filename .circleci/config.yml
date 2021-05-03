@@ -9,6 +9,8 @@ jobs:
     steps:
       - checkout
       - run:
+          command: git config user.name $CIRCLE_USERNAME
+      - run:
           name: Git list
           command: git branch -a -v
       - run:
