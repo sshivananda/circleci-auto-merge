@@ -7,29 +7,43 @@ jobs:
     docker:
       - image: cimg/base:2021.04
     steps:
-      - checkout
       - add_ssh_keys:
           fingerprints:
             - "c1:82:52:f8:11:ff:8e:f2:80:01:4a:d4:32:ba:3a:28"
       - run:
-          command: echo $CIRCLE_USERNAME
-      - run:
-          command: git config user.name $CIRCLE_USERNAME
-      - run:
-          name: Git list
-          command: git branch -a -v
-      - run:
-          name: Git checkout test-branch
-          command: git checkout origin/test-branch
-      - run:
-          name: Git switch test-branch
-          command: git switch test-branch
-      - run:
-          name: Git merge
-          command: git merge origin/circleci-project-setup
-      - run:
-          name: Git push
-          command: git push
+          name: Commit to GitHub
+          command: |
+            if [[ -z "${CIRCLE_PULL_REQUEST}"]]
+            then
+              echo "Committing to GitHub"
+              git config user.email "circleci_auto_merge_repo@nonexistent.com"
+              git config user.name "CircleCI Job For Auto merge repo"
+              git checkout test-branch
+              git merge origin/circleci-project-setup
+              git push origin test-branch
+            else
+              echo "Not committing to GitHub"
+            fi
+
+      # - run:
+      #     command: echo $CIRCLE_USERNAME
+      # - run:
+      #     command: git config user.name $CIRCLE_USERNAME
+      # - run:
+      #     name: Git list
+      #     command: git branch -a -v
+      # - run:
+      #     name: Git checkout test-branch
+      #     command: git checkout origin/test-branch
+      # - run:
+      #     name: Git switch test-branch
+      #     command: git switch test-branch
+      # - run:
+      #     name: Git merge
+      #     command: git merge origin/circleci-project-setup
+      # - run:
+      #     name: Git push
+      #     command: git push
 
 workflows:
   welcome:
