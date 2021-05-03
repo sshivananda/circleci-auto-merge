@@ -5,7 +5,7 @@ orbs:
 jobs:
   merge-to-staging:
     docker:
-      - image: alpine
+      - image: cimg/base:2021.04
     steps:
       - run:
           name: Git push
