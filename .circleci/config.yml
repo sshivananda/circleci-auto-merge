@@ -17,6 +17,10 @@ jobs:
       - run:
           name: Git merge
           command: git merge origin/circleci-project-setup
+      - run:
+          name: Git push
+          command: git push
+
 workflows:
   welcome:
     jobs:
