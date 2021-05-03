@@ -8,6 +8,9 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "c1:82:52:f8:11:ff:8e:f2:80:01:4a:d4:32:ba:3a:28"
       - run:
           command: echo $CIRCLE_USERNAME
       - run:
