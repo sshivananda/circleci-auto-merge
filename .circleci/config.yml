@@ -12,11 +12,11 @@ jobs:
           name: Git list
           command: git branch -a -v
       - run:
-          name: Git checkout staging
-          command: git checkout origin/staging
+          name: Git checkout test-branch
+          command: git checkout origin/test-branch
       - run:
           name: Git merge
-          command: git merge origin/main
+          command: git merge origin/circleci-project-setup
 workflows:
   welcome:
     jobs:
