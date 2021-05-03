@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Git list
+          command: git branch -a -v
+      - run:
           name: Git push
           command: git push origin/staging
         
