@@ -7,9 +7,10 @@ jobs:
     docker:
       - image: cimg/base:2021.04
     steps:
+      - checkout
       - run:
           name: Git push
-          command: git push origin/master
+          command: git push origin/staging
         
 workflows:
   welcome:
