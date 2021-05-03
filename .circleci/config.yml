@@ -13,7 +13,10 @@ jobs:
           command: git branch -a -v
       - run:
           name: Git checkout test-branch
-          command: git switch origin/test-branch
+          command: git checkout origin/test-branch
+      - run:
+          name: Git switch test-branch
+          command: git switch test-branch
       - run:
           name: Git merge
           command: git merge origin/circleci-project-setup
