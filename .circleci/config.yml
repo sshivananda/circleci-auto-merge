@@ -13,7 +13,8 @@ jobs:
       - run:
           name: Commit to GitHub
           command: |
-            if [ -z $<< parameters.circle_pull_request >> ];
+            echo $CIRCLE_PULL_REQUEST
+            if [ -z "${CIRCLE_PULL_REQUEST}" ];
             then
               echo "Committing to GitHub"
               git config user.email "circleci_auto_merge_repo@nonexistent.com"
